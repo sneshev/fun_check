@@ -5,9 +5,42 @@
 	in any file of the current/specified directory and any subdirectory
 */
 
-int main(int argc, char *argv[]) {
 
+
+void fnchk(char *entry) {
+	e_type	type = find_type(entry);
+	if (type == IS_DIRECTORY) {
+		//...
+	}
+	else if (type == IS_FILE) {
+		//...
+	}
+	else if (type == NOACCESS) {
+		write_err(PERMISSION_DENIED, entry);
+	}
+	else if (type == NONE) {
+		write_err(NOFILE, entry);
+	}
+	else if (type == OTHER) {
+		write_err(UNRECOGNIZED_FILE, entry);
+	}
 }
+
+int main(int argc, char *argv[]) {
+	if (argc == 1) {
+		fnchk(".");
+	}
+	else {
+		for (int i = 1; i < argc; i++)
+			fnchk(argv[i]);
+	}
+}
+
+//  argc = 3
+//  argv[0]  [1]  [2]
+// ./fnchk   kur  eee
+
+
 
 /*
 	1.initialize

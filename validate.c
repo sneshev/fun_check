@@ -1,9 +1,11 @@
 #include "funcheck.h"
 
 bool is_valid_input(int argc, char *argv[]) {
+	(void)argv;
 	if (argc == 1)
 		return (true);
 	//...
+	return (true);
 }
 
 /*
