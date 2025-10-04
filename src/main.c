@@ -6,7 +6,8 @@
 */
 
 void get_functions(char *filename, char *funlst[]) {
-	
+	(void)filename;
+	(void)funlst;
 }
 
 
@@ -22,7 +23,7 @@ void fnchk(char *entry, e_type type, char *funlst[]) {
 		}
 		struct dirent *new_entry = readdir(directory);
 		while (new_entry) {
-			fnchk(new_entry->d_name, find_type(new_entry), funlst);
+			fnchk(new_entry->d_name, find_type(new_entry->d_name), funlst);
 			new_entry = readdir(directory);
 		}
 		if (errno)
