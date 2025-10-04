@@ -10,6 +10,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <errno.h>
+#include <strings.h>
 
 typedef enum s_type {
 	NONE,

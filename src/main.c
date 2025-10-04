@@ -5,11 +5,14 @@
 	in any file of the current/specified directory and any subdirectory
 */
 
+void get_functions(char *filename, char *funlst[]) {
+	
+}
 
 
-void fnchk(char *entry, e_type type) {
+void fnchk(char *entry, e_type type, char *funlst[]) {
 	if (type == IS_FILE) {
-		//...
+		get_functions(entry, funlst);
 	}
 	else if (type == IS_DIRECTORY) {
 		errno = 0;
@@ -19,7 +22,7 @@ void fnchk(char *entry, e_type type) {
 		}
 		struct dirent *new_entry = readdir(directory);
 		while (new_entry) {
-			fnchk(new_entry, find_type(new_entry));
+			fnchk(new_entry->d_name, find_type(new_entry), funlst);
 			new_entry = readdir(directory);
 		}
 		if (errno)
@@ -28,13 +31,16 @@ void fnchk(char *entry, e_type type) {
 }
 
 int main(int argc, char *argv[]) {
+	char *funlst[256];
+	bzero(funlst, 256 * sizeof(char *));
+
 	if (argc == 1) {
-		fnchk(".", IS_DIRECTORY);
+		fnchk(".", IS_DIRECTORY, funlst);
 	} else {
 		for (int i = 1; i < argc; i++) {
 			e_type type = find_type(argv[i]);
 			if (type == IS_DIRECTORY || type == IS_FILE) {
-				fnchk(argv[i], type);
+				fnchk(argv[i], type, funlst);
 			}
 			else if (type == NOACCESS)
 				write_err(PERMISSION_DENIED, argv[i]);
