@@ -8,6 +8,8 @@
 #include <dirent.h>   // For opendir, readdir, closedir
 #include <unistd.h>   // For access()
 #include <sys/stat.h>
+#include <dirent.h>
+#include <errno.h>
 
 typedef enum s_type {
 	NONE,
