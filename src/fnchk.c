@@ -27,7 +27,7 @@ void fnchk(char *entry, e_type type, char *funlst[]) {
 		struct dirent *new_entry = readdir(directory);
 		while (new_entry) {
 			if (*new_entry->d_name != '.') {
-				if (*entry == '.') //* (see below)
+				if (*entry == '.' && !*(entry + 1)) //* (see below)
 					fnchk(new_entry->d_name, find_type(new_entry->d_name), funlst);
 				else {
 					char *new_name = get_name(entry, new_entry->d_name);
