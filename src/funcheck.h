@@ -4,6 +4,7 @@
 #include "errors.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <dirent.h>   // For opendir, readdir, closedir
 #include <unistd.h>   // For access()
@@ -11,6 +12,7 @@
 #include <dirent.h>
 #include <errno.h>
 #include <strings.h>
+#include <string.h>
 
 typedef enum s_type {
 	NONE,
@@ -25,6 +27,9 @@ typedef enum s_type {
 // bool	is_directory(const char *path);
 e_type	find_type(const char *path);
 
+// 
+void fnchk(char *entry, e_type type, char *funlst[]);
+void get_functions(char *filename, char *funlst[]);
 
 // errors
 void	write_err(char *msg, char *keyword);

@@ -5,30 +5,21 @@
 	in any file of the current/specified directory and any subdirectory
 */
 
-void get_functions(char *filename, char *funlst[]) {
-	(void)filename;
-	(void)funlst;
+bool is_c_file(char *file) {
+	int len = strlen(file);
+	if (len <= 2)
+		return (false);
+	if (file[len - 2] != '.')
+		return (false);
+	if (file[len - 1] != 'c')
+		return (false);
+	return (true);
 }
 
-
-void fnchk(char *entry, e_type type, char *funlst[]) {
-	if (type == IS_FILE) {
-		get_functions(entry, funlst);
-	}
-	else if (type == IS_DIRECTORY) {
-		errno = 0;
-		DIR *directory = opendir(entry);
-		if (!directory) {
-			perror("opendir: "); return ; 
-		}
-		struct dirent *new_entry = readdir(directory);
-		while (new_entry) {
-			fnchk(new_entry->d_name, find_type(new_entry->d_name), funlst);
-			new_entry = readdir(directory);
-		}
-		if (errno)
-			perror("readdir: ");
-	}
+void get_functions(char *filename, char *funlst[]) {
+	(void)funlst;
+	if (is_c_file(filename))
+		printf("%s\n", filename);
 }
 
 int main(int argc, char *argv[]) {
