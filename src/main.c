@@ -5,23 +5,6 @@
 	in any file of the current/specified directory and any subdirectory
 */
 
-bool is_c_file(char *file) {
-	int len = strlen(file);
-	if (len <= 2)
-		return (false);
-	if (file[len - 2] != '.')
-		return (false);
-	if (file[len - 1] != 'c')
-		return (false);
-	return (true);
-}
-
-void get_functions(char *filename, char *funlst[]) {
-	(void)funlst;
-	if (is_c_file(filename))
-		printf("%s\n", filename);
-}
-
 int main(int argc, char *argv[]) {
 	char *funlst[256];
 	bzero(funlst, 256 * sizeof(char *));
