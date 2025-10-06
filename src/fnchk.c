@@ -34,6 +34,7 @@ void fnchk(char *entry, e_type type, char *funlst[]) {
 			}
 			new_entry = readdir(directory);
 		}
+		closedir(directory);
 		if (errno)
 			perror("readdir: ");
 	}
