@@ -5,6 +5,7 @@
 	in any file of the current/specified directory and any subdirectory
 */
 
+
 int main(int argc, char *argv[]) {
 	char *funlst[256];
 	bzero(funlst, 256 * sizeof(char *));

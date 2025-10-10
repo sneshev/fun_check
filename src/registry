@@ -1,0 +1,24 @@
+/*
+
+	.i need a registry of the functions implemented 
+		-> i can make it like i did xmalloc 
+		-> static variable array with init() function
+		-> then i can have the add_function(char *name) 
+		that i could call from anywhere
+
+	.i also need a registry of internal functions
+
+	.its good if the registries are char pointer arrays
+	rather than lists for efficiency purposes
+		-> if the registry is a fixed size char *registry[]
+		i can make it like 256 spaces. if you fill in all
+		available spaces, the last address of the array can 
+		be a pointer to a next fixed (again e.g. 256) size
+		array of function name pointers.
+			->if it is like this, i need to free the pointers
+			in reverse order and if all 256 spaces of an array
+			are taken, call the same function on the last address
+			that is pointing to the next array and so on so the 
+			recursion goes in reverse order and frees first the 
+			very last funcitons you added and last the very first 
+*/

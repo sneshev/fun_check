@@ -31,8 +31,8 @@ e_type	find_type(const char *path);
 void fnchk(char *entry, e_type type, char *funlst[]);
 void get_functions(char *filename, char *funlst[]);
 
-// errors
-void	write_err(char *msg, char *keyword);
+
+void write_err(char *msg, char *keyword);
 
 
 #endif
